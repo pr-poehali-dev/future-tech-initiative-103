@@ -2,9 +2,19 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import type { SectionProps } from "@/types"
 
-export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText }: SectionProps) {
+export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, logo }: SectionProps & { logo?: string }) {
   return (
     <section id={id} className="relative h-screen w-full snap-start flex flex-col justify-center p-8 md:p-16 lg:p-24">
+      {logo && (
+        <motion.div
+          className="mb-8"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isActive ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          <img src={logo} alt="Логотип" className="w-48 h-48 object-cover rounded-2xl" />
+        </motion.div>
+      )}
       {subtitle && (
         <motion.div
           className="mb-12"
